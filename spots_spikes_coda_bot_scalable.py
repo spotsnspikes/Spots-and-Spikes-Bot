@@ -15,10 +15,11 @@ openai.api_key = OPENAI_API_KEY
 
 # Set up Discord bot
 intents = discord.Intents.default()
-intents.message_content = True
+intents.message_content = True  # Needed to read messages
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-# Commands
+# --- Commands ---
+
 @bot.command(name="coda")
 async def coda(ctx, *, message: str):
     await ctx.send(f"Hello! You said: {message}")
@@ -39,10 +40,11 @@ async def story(ctx, *, prompt: str):
 async def character(ctx, *, name: str):
     await ctx.send(f"Character received: {name}")
 
-# On ready
+# --- Event ---
+
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}!")
 
-# Run bot
+# --- Run Bot ---
 bot.run(DISCORD_TOKEN)
